@@ -1,0 +1,25 @@
+scenario,match_tier,target_down,target_ydstogo,target_yardline_100,target_quarter,target_quarter_seconds_remaining,target_score_differential,distance_bucket,field_zone,score_state,league_plays,league_games,seasons,teams,actual_pass_rate_pct,expected_pass_rate_pct,pass_oe_pct,mean_epa,success_rate_pct,coverage_label
+Opening-drive first down,Strict,1,10,75,1,780,0,Long (7-10),Own territory,Tied,3568,2088,8,32,46.89,46.62,0.27,-0.0202,44.42,Strong simulator coverage
+Opening-drive first down,Balanced,1,10,75,1,780,0,Long (7-10),Own territory,Tied,5429,2157,8,32,47.78,46.72,1.06,0.0016,44.45,Strong simulator coverage
+Opening-drive first down,Broad,1,10,75,1,780,0,Long (7-10),Own territory,Tied,8630,2182,8,32,49.86,48.58,1.28,0.006,44.31,Strong simulator coverage
+Second-and-medium,Strict,2,6,60,2,480,0,Medium (4-6),Own territory,Tied,216,203,8,32,56.94,59.9,-2.95,0.107,49.07,Thin coverage
+Second-and-medium,Balanced,2,6,60,2,480,0,Medium (4-6),Own territory,Tied,159,143,8,32,54.72,52.72,2.0,0.1956,55.97,Thin coverage
+Second-and-medium,Broad,2,6,60,2,480,0,Medium (4-6),Own territory,Tied,1602,1113,8,32,55.18,53.63,1.55,0.0498,50.87,Strong simulator coverage
+Third-and-short,Strict,3,2,45,2,600,0,Short (1-3),Plus territory,Tied,136,129,8,32,48.53,51.64,-3.11,0.2953,69.85,Thin coverage
+Third-and-short,Balanced,3,2,45,2,600,0,Short (1-3),Plus territory,Tied,140,129,8,32,49.29,49.35,-0.06,0.1051,66.43,Thin coverage
+Third-and-short,Broad,3,2,45,2,600,0,Short (1-3),Plus territory,Tied,846,698,8,32,47.4,50.27,-2.87,0.1051,65.72,Thin coverage
+Third-and-seven in plus territory,Strict,3,7,38,2,480,0,Long (7-10),Plus territory,Tied,93,92,8,30,91.4,94.7,-3.3,-0.4017,35.48,Thin coverage
+Third-and-seven in plus territory,Balanced,3,7,38,2,480,0,Long (7-10),Plus territory,Tied,101,94,8,31,94.06,96.06,-2.0,-0.1442,32.67,Thin coverage
+Third-and-seven in plus territory,Broad,3,7,38,2,480,0,Long (7-10),Plus territory,Tied,744,617,8,32,95.16,96.29,-1.13,-0.153,35.08,Thin coverage
+Fourth-and-one decision,Strict,4,1,42,4,300,-3,Short (1-3),Plus territory,Trailing by 1-8,32,31,8,21,46.88,50.2,-3.32,0.4559,59.38,Thin coverage
+Fourth-and-one decision,Balanced,4,1,42,4,300,-3,Short (1-3),Plus territory,Trailing by 1-8,116,114,8,31,62.93,64.44,-1.51,0.4871,62.93,Thin coverage
+Fourth-and-one decision,Broad,4,1,42,4,300,-3,Short (1-3),Plus territory,Trailing by 1-8,247,229,8,31,56.68,56.47,0.21,0.3851,63.56,Thin coverage
+Red-zone second down,Strict,2,7,15,2,420,0,Long (7-10),Red zone,Tied,134,125,8,31,56.72,62.58,-5.87,0.1442,49.25,Thin coverage
+Red-zone second down,Balanced,2,7,15,2,420,0,Long (7-10),Red zone,Tied,86,86,8,31,74.42,66.14,8.28,0.2068,41.86,Thin coverage
+Red-zone second down,Broad,2,7,15,2,420,0,Long (7-10),Red zone,Tied,660,613,8,32,68.18,65.14,3.04,0.017,36.82,Thin coverage
+Two-minute comeback,Strict,1,10,70,4,90,-4,Long (7-10),Own territory,Trailing by 1-8,1076,670,8,32,90.24,87.58,2.66,0.018,43.59,Usable with sample warning
+Two-minute comeback,Balanced,1,10,70,4,90,-4,Long (7-10),Own territory,Trailing by 1-8,1931,907,8,32,84.62,83.7,0.92,0.01,42.67,Strong simulator coverage
+Two-minute comeback,Broad,1,10,70,4,90,-4,Long (7-10),Own territory,Trailing by 1-8,6730,1474,8,32,60.0,60.05,-0.05,0.0099,43.92,Strong simulator coverage
+Protecting a late lead,Strict,2,7,60,4,360,7,Long (7-10),Own territory,Leading by 1-8,174,167,8,32,51.72,51.38,0.34,0.1212,40.23,Thin coverage
+Protecting a late lead,Balanced,2,7,60,4,360,7,Long (7-10),Own territory,Leading by 1-8,764,618,8,32,58.77,53.55,5.21,0.0191,38.35,Thin coverage
+Protecting a late lead,Broad,2,7,60,4,360,7,Long (7-10),Own territory,Leading by 1-8,2095,1186,8,32,64.49,63.49,0.99,0.045,39.76,Strong simulator coverage

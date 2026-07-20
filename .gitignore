@@ -1,0 +1,17 @@
+﻿__pycache__/
+*.py[cod]
+.pytest_cache/
+.ipynb_checkpoints/
+
+.env
+.venv/
+venv/
+env/
+
+data/raw/
+data/processed/*.parquet
+outputs/tables/*.parquet
+models/*.joblib
+
+.DS_Store
+Thumbs.db

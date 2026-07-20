@@ -1,0 +1,4 @@
+model,accuracy,roc_auc,log_loss,brier_score
+logistic_regression,0.677,0.7346,0.5891,0.2013
+hist_gradient_boosting,0.7125,0.7946,0.5244,0.1783
+nflverse_xpass,0.7115,0.7915,0.529,0.18

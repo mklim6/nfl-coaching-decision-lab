@@ -1,0 +1,13 @@
+group_variable,group_value,model,plays,accuracy,log_loss,brier_score,actual_pass_rate,expected_pass_rate,mean_pass_oe,roc_auc
+qtr,1.0,logistic_regression,7787,0.6316,0.6219,0.2159,0.5627,0.5693,-0.0066,0.6932
+qtr,1.0,hist_gradient_boosting,7787,0.651,0.5883,0.2049,0.5627,0.5677,-0.005,0.7248
+qtr,1.0,nflverse_xpass,7787,0.6497,0.5898,0.2051,0.5627,0.5737,-0.011,0.7237
+qtr,2.0,logistic_regression,9402,0.674,0.5855,0.1997,0.6437,0.6466,-0.0029,0.7165
+qtr,2.0,hist_gradient_boosting,9402,0.7163,0.5167,0.1753,0.6437,0.6507,-0.007,0.7907
+qtr,2.0,nflverse_xpass,9402,0.7146,0.5232,0.1775,0.6437,0.6706,-0.0269,0.7868
+qtr,3.0,logistic_regression,7973,0.6543,0.6061,0.2088,0.5786,0.5821,-0.0035,0.7194
+qtr,3.0,hist_gradient_boosting,7973,0.6819,0.5665,0.1956,0.5786,0.5842,-0.0056,0.7568
+qtr,3.0,nflverse_xpass,7973,0.6854,0.5668,0.1955,0.5786,0.599,-0.0204,0.7573
+qtr,4.0,logistic_regression,9455,0.7372,0.5508,0.1842,0.6224,0.6221,0.0003,0.7817
+qtr,4.0,hist_gradient_boosting,9455,0.786,0.4431,0.1446,0.6224,0.6264,-0.0039,0.8638
+qtr,4.0,nflverse_xpass,9455,0.7811,0.4523,0.1486,0.6224,0.6482,-0.0258,0.8579

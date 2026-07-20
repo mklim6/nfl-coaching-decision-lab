@@ -1,0 +1,85 @@
+{
+    "model_type": "HistGradientBoostingClassifier",
+    "model_purpose": "Situation-only expected pass probability model",
+    "training_seasons": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+    ],
+    "test_season": 2025,
+    "categorical_features": [
+        "season_type",
+        "qtr",
+        "down",
+        "goal_to_go",
+        "posteam_timeouts_remaining",
+        "defteam_timeouts_remaining",
+        "posteam_is_home",
+        "posteam_opening_kickoff",
+        "roof",
+        "surface"
+    ],
+    "numeric_features": [
+        "week",
+        "game_seconds_remaining",
+        "ydstogo",
+        "yardline_100",
+        "score_differential",
+        "posteam_spread_line",
+        "total_line"
+    ],
+    "excluded_from_model": [
+        "head_coach",
+        "posteam",
+        "defteam",
+        "shotgun",
+        "no_huddle",
+        "temp",
+        "wind",
+        "xpass",
+        "pass_oe",
+        "epa",
+        "success",
+        "yards_gained"
+    ],
+    "hyperparameters": {
+        "learning_rate": 0.08,
+        "max_iter": 250,
+        "max_leaf_nodes": 31,
+        "min_samples_leaf": 50,
+        "l2_regularization": 1.0,
+        "early_stopping": false,
+        "random_state": 42
+    },
+    "minimum_coach_plays": 500,
+    "final_test_metrics": {
+        "model": {
+            "model": "final_hist_gradient_boosting",
+            "plays": 34415,
+            "accuracy": 0.7114,
+            "roc_auc": 0.793,
+            "log_loss": 0.5265,
+            "brier_score": 0.1791,
+            "expected_calibration_error": 0.0068,
+            "actual_pass_rate": 0.6041,
+            "expected_pass_rate": 0.6098,
+            "mean_pass_oe": -0.0057
+        },
+        "nflverse_xpass": {
+            "model": "nflverse_xpass",
+            "plays": 34415,
+            "accuracy": 0.7108,
+            "roc_auc": 0.7875,
+            "log_loss": 0.5342,
+            "brier_score": 0.1821,
+            "expected_calibration_error": 0.0202,
+            "actual_pass_rate": 0.6041,
+            "expected_pass_rate": 0.6241,
+            "mean_pass_oe": -0.0201
+        }
+    }
+}

@@ -1,0 +1,7 @@
+group_variable,group_value,model,plays,accuracy,log_loss,brier_score,actual_pass_rate,expected_pass_rate,mean_pass_oe,roc_auc
+season_type,POST,logistic_regression,1564,0.672,0.5942,0.2032,0.5844,0.6269,-0.0425,0.7446
+season_type,POST,hist_gradient_boosting,1564,0.7059,0.5248,0.1792,0.5844,0.6215,-0.0371,0.8006
+season_type,POST,nflverse_xpass,1564,0.7168,0.5291,0.1796,0.5844,0.6147,-0.0303,0.7977
+season_type,REG,logistic_regression,33225,0.6773,0.5888,0.2012,0.6054,0.6067,-0.0013,0.7344
+season_type,REG,hist_gradient_boosting,33225,0.7128,0.5244,0.1783,0.6054,0.6093,-0.0039,0.7945
+season_type,REG,nflverse_xpass,33225,0.7113,0.529,0.1801,0.6054,0.6263,-0.0209,0.7911
