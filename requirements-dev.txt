@@ -1,0 +1,13 @@
+# Full development and rebuild environment.
+# Streamlit deployment continues to use requirements.txt.
+-r requirements.txt
+
+joblib
+matplotlib
+nflreadpy
+numpy
+polars
+pyarrow
+pytest
+scikit-learn
+seaborn
