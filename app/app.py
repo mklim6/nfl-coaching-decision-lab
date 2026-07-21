@@ -115,6 +115,41 @@ filter_options = load_filter_options()
 bounds = filter_options["bounds"]
 
 
+# Initialize shared filter state before creating keyed widgets. This avoids
+# Streamlit warnings caused by supplying both a widget default and a value
+# through st.session_state. Preset buttons can still update these values.
+default_season = (
+    2025
+    if 2025 in filter_options["seasons"]
+    else filter_options["seasons"][-1]
+)
+
+default_filter_state = {
+    "filter_seasons": [default_season],
+    "filter_season_types": ["REG", "POST"],
+    "filter_coaches": [],
+    "filter_teams": [],
+    "filter_downs": [1, 2, 3, 4],
+    "filter_quarters": [1, 2, 3, 4, 5],
+    "filter_distance": (
+        int(bounds["min_distance"]),
+        int(bounds["max_distance"]),
+    ),
+    "filter_field": (
+        int(bounds["min_yardline"]),
+        int(bounds["max_yardline"]),
+    ),
+    "filter_score": (
+        int(bounds["min_score"]),
+        int(bounds["max_score"]),
+    ),
+}
+
+for filter_key, default_value in default_filter_state.items():
+    if filter_key not in st.session_state:
+        st.session_state[filter_key] = default_value
+
+
 def apply_exploration_preset(preset_name):
     """Apply a curated story to the shared sidebar filters."""
 
@@ -208,7 +243,6 @@ st.sidebar.header("Filters")
 selected_seasons = st.sidebar.multiselect(
     "Seasons",
     options=filter_options["seasons"],
-    default=[2025],
     key="filter_seasons",
 )
 
@@ -216,7 +250,6 @@ selected_seasons = st.sidebar.multiselect(
 selected_season_types = st.sidebar.multiselect(
     "Season type",
     options=["REG", "POST"],
-    default=["REG", "POST"],
     key="filter_season_types",
     format_func=lambda value: (
         "Regular season"
@@ -1167,7 +1200,6 @@ def render_plotly_chart(figure, *args, **kwargs):
 selected_downs = st.sidebar.multiselect(
     "Down",
     options=[1, 2, 3, 4],
-    default=[1, 2, 3, 4],
     key="filter_downs",
 )
 
@@ -1175,7 +1207,6 @@ selected_downs = st.sidebar.multiselect(
 selected_quarters = st.sidebar.multiselect(
     "Quarter",
     options=[1, 2, 3, 4, 5],
-    default=[1, 2, 3, 4, 5],
     key="filter_quarters",
     format_func=lambda value: (
         "Overtime"
@@ -1189,10 +1220,6 @@ distance_bounds = st.sidebar.slider(
     "Yards to go",
     min_value=int(bounds["min_distance"]),
     max_value=int(bounds["max_distance"]),
-    value=(
-        int(bounds["min_distance"]),
-        int(bounds["max_distance"]),
-    ),
     key="filter_distance",
 )
 
@@ -1201,10 +1228,6 @@ yardline_bounds = st.sidebar.slider(
     "Yards from opponent end zone",
     min_value=int(bounds["min_yardline"]),
     max_value=int(bounds["max_yardline"]),
-    value=(
-        int(bounds["min_yardline"]),
-        int(bounds["max_yardline"]),
-    ),
     key="filter_field",
 )
 
@@ -1213,10 +1236,6 @@ score_bounds = st.sidebar.slider(
     "Offense score differential",
     min_value=int(bounds["min_score"]),
     max_value=int(bounds["max_score"]),
-    value=(
-        int(bounds["min_score"]),
-        int(bounds["max_score"]),
-    ),
     key="filter_score",
 )
 

@@ -1,4 +1,13 @@
-streamlit==1.58.0
-duckdb==1.5.4
-pandas==3.0.3
-plotly==6.7.0
+# Full development and rebuild environment.
+# Streamlit deployment continues to use requirements.txt.
+-r requirements.txt
+
+joblib
+matplotlib
+nflreadpy
+numpy
+polars
+pyarrow
+pytest
+scikit-learn
+seaborn

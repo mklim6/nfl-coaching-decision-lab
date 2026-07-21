@@ -140,13 +140,24 @@ play-calling responsibility may still reflect collaborative decision-making.
 
 ## Local setup
 
-Python 3.12 is recommended.
+Python 3.12 is recommended. To run the deployed application locally:
 
 ```powershell
 conda activate nfl-coaching-lab
 python -m pip install -r requirements.txt
 python -m streamlit run app/app.py
 ```
+
+To rebuild the datasets, models, database, and validation outputs, install the
+full development dependencies instead:
+
+```powershell
+python -m pip install -r requirements-dev.txt
+```
+
+`requirements.txt` contains the lightweight Streamlit deployment dependencies.
+`requirements-dev.txt` extends it with the data, modeling, testing, and
+visualization packages used by the source pipeline.
 
 The application expects the deployment database at:
 
@@ -180,12 +191,15 @@ NFL Coaching Decision Lab/
 |-- database/
 |   `-- coaching_lab.duckdb
 |-- models/
+|-- notebooks/
 |-- outputs/
 |   |-- figures/
 |   `-- tables/
+|-- sql/
 |-- src/
 |-- tests/
 |-- requirements.txt
+|-- requirements-dev.txt
 |-- LICENSE
 `-- README.md
 ```
