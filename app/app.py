@@ -109,6 +109,84 @@ filter_options = load_filter_options()
 bounds = filter_options["bounds"]
 
 
+def apply_exploration_preset(preset_name):
+    """Apply a curated story to the shared sidebar filters."""
+
+    full_distance = (
+        int(bounds["min_distance"]),
+        int(bounds["max_distance"]),
+    )
+    full_field = (
+        int(bounds["min_yardline"]),
+        int(bounds["max_yardline"]),
+    )
+    full_score = (
+        int(bounds["min_score"]),
+        int(bounds["max_score"]),
+    )
+
+    presets = {
+        "reid": {
+            "filter_seasons": list(filter_options["seasons"]),
+            "filter_season_types": ["REG", "POST"],
+            "filter_coaches": ["Andy Reid"],
+            "filter_teams": [],
+            "filter_downs": [1, 2, 3, 4],
+            "filter_quarters": [1, 2, 3, 4, 5],
+            "filter_distance": full_distance,
+            "filter_field": full_field,
+            "filter_score": full_score,
+        },
+        "ravens": {
+            "filter_seasons": [2024, 2025],
+            "filter_season_types": ["REG", "POST"],
+            "filter_coaches": ["John Harbaugh"],
+            "filter_teams": ["BAL"],
+            "filter_downs": [1, 2, 3, 4],
+            "filter_quarters": [1, 2, 3, 4, 5],
+            "filter_distance": full_distance,
+            "filter_field": full_field,
+            "filter_score": full_score,
+        },
+        "postseason": {
+            "filter_seasons": list(filter_options["seasons"]),
+            "filter_season_types": ["POST"],
+            "filter_coaches": [],
+            "filter_teams": [],
+            "filter_downs": [1, 2, 3, 4],
+            "filter_quarters": [1, 2, 3, 4, 5],
+            "filter_distance": full_distance,
+            "filter_field": full_field,
+            "filter_score": full_score,
+        },
+        "third_down": {
+            "filter_seasons": list(filter_options["seasons"]),
+            "filter_season_types": ["REG", "POST"],
+            "filter_coaches": [],
+            "filter_teams": [],
+            "filter_downs": [3],
+            "filter_quarters": [1, 2, 3, 4, 5],
+            "filter_distance": (3, 10),
+            "filter_field": full_field,
+            "filter_score": (-8, 8),
+        },
+        "reset": {
+            "filter_seasons": [2025],
+            "filter_season_types": ["REG", "POST"],
+            "filter_coaches": [],
+            "filter_teams": [],
+            "filter_downs": [1, 2, 3, 4],
+            "filter_quarters": [1, 2, 3, 4, 5],
+            "filter_distance": full_distance,
+            "filter_field": full_field,
+            "filter_score": full_score,
+        },
+    }
+
+    for key, value in presets[preset_name].items():
+        st.session_state[key] = value
+
+
 st.title("NFL Coaching Decision Lab")
 
 st.caption(
@@ -125,6 +203,7 @@ selected_seasons = st.sidebar.multiselect(
     "Seasons",
     options=filter_options["seasons"],
     default=[2025],
+    key="filter_seasons",
 )
 
 
@@ -132,6 +211,7 @@ selected_season_types = st.sidebar.multiselect(
     "Season type",
     options=["REG", "POST"],
     default=["REG", "POST"],
+    key="filter_season_types",
     format_func=lambda value: (
         "Regular season"
         if value == "REG"
@@ -143,12 +223,14 @@ selected_season_types = st.sidebar.multiselect(
 selected_coaches = st.sidebar.multiselect(
     "Head coaches",
     options=filter_options["coaches"],
+    key="filter_coaches",
 )
 
 
 selected_teams = st.sidebar.multiselect(
     "Offensive teams",
     options=filter_options["teams"],
+    key="filter_teams",
 )
 
 
@@ -156,6 +238,7 @@ selected_downs = st.sidebar.multiselect(
     "Down",
     options=[1, 2, 3, 4],
     default=[1, 2, 3, 4],
+    key="filter_downs",
 )
 
 
@@ -163,6 +246,7 @@ selected_quarters = st.sidebar.multiselect(
     "Quarter",
     options=[1, 2, 3, 4, 5],
     default=[1, 2, 3, 4, 5],
+    key="filter_quarters",
     format_func=lambda value: (
         "Overtime"
         if value == 5
@@ -179,6 +263,7 @@ distance_bounds = st.sidebar.slider(
         int(bounds["min_distance"]),
         int(bounds["max_distance"]),
     ),
+    key="filter_distance",
 )
 
 
@@ -190,6 +275,7 @@ yardline_bounds = st.sidebar.slider(
         int(bounds["min_yardline"]),
         int(bounds["max_yardline"]),
     ),
+    key="filter_field",
 )
 
 
@@ -201,6 +287,7 @@ score_bounds = st.sidebar.slider(
         int(bounds["min_score"]),
         int(bounds["max_score"]),
     ),
+    key="filter_score",
 )
 
 
@@ -796,6 +883,113 @@ where_clause, query_parameters = (
 
 # Overview tab
 with overview_tab:
+    st.subheader("Welcome to the Coaching Decision Lab")
+    st.write(
+        "Turn eight seasons of NFL play-by-play into questions you can "
+        "actually explore. Compare decision-makers, recreate game "
+        "situations, or test your football instincts."
+    )
+
+    route_columns = st.columns(3)
+    with route_columns[0]:
+        with st.container(border=True):
+            st.markdown("#### Compare decision-makers")
+            st.caption(
+                "Put coaches or verified offensive play callers side by "
+                "side, with context-adjusted tendencies and outcomes."
+            )
+            st.markdown("Use the **Coach Comparison** tab above.")
+
+    with route_columns[1]:
+        with st.container(border=True):
+            st.markdown("#### Build a game situation")
+            st.caption(
+                "Choose down, distance, field position, clock, and score "
+                "to find comparable historical calls."
+            )
+            st.markdown("Open the **Situation Lab** tab above.")
+
+    with route_columns[2]:
+        with st.container(border=True):
+            st.markdown("#### Test your instincts")
+            st.caption(
+                "Guess the historical majority call across a randomized "
+                "deck without repeating a situation."
+            )
+            st.markdown("Play in the **Make the Call** tab above.")
+
+    st.markdown("### Start with a story")
+    st.caption(
+        "Each button applies a curated set of sidebar filters. From there, "
+        "every chart and table remains fully interactive."
+    )
+
+    story_columns = st.columns(4)
+    with story_columns[0]:
+        with st.container(border=True):
+            st.markdown("**The Andy Reid profile**")
+            st.caption(
+                "Follow Reid's context-adjusted passing tendency across "
+                "the complete 2018-2025 window."
+            )
+            st.button(
+                "Explore Reid",
+                on_click=apply_exploration_preset,
+                args=("reid",),
+                width="stretch",
+            )
+
+    with story_columns[1]:
+        with st.container(border=True):
+            st.markdown("**Baltimore's run identity**")
+            st.caption(
+                "Zoom in on Baltimore under John Harbaugh during the two "
+                "most recent seasons."
+            )
+            st.button(
+                "Explore Baltimore",
+                on_click=apply_exploration_preset,
+                args=("ravens",),
+                width="stretch",
+            )
+
+    with story_columns[2]:
+        with st.container(border=True):
+            st.markdown("**Postseason decisions**")
+            st.caption(
+                "See how league play calling changes when only playoff "
+                "games remain in the sample."
+            )
+            st.button(
+                "Explore playoffs",
+                on_click=apply_exploration_preset,
+                args=("postseason",),
+                width="stretch",
+            )
+
+    with story_columns[3]:
+        with st.container(border=True):
+            st.markdown("**Third-and-manageable**")
+            st.caption(
+                "Study third-and-3 through third-and-10 in one-score game "
+                "states across all seasons."
+            )
+            st.button(
+                "Explore third down",
+                on_click=apply_exploration_preset,
+                args=("third_down",),
+                width="stretch",
+            )
+
+    st.button(
+        "Reset to the 2025 overview",
+        on_click=apply_exploration_preset,
+        args=("reset",),
+    )
+
+    st.divider()
+    st.markdown("### Current selection")
+
     overview = connection.execute(
         f"""
         SELECT
